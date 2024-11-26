@@ -39,6 +39,9 @@ const SERVER = HTTP.createServer((req, res) => {
     req.on("end", () => {
       const parsedBody = Buffer.concat(BODY).toString();
       console.log(parsedBody);
+      const params = new URLSearchParams(parsedBody);
+      bodyObject = Object.fromEntries(params);
+      console.log(bodyObject);
     });
     res.statusCode = 302;
     res.setHeader("Location", "/");
