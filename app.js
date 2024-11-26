@@ -31,8 +31,14 @@ const SERVER = HTTP.createServer((req, res) => {
     req.method === "POST"
   ) {
     //FS.writeFileSync("siraj.txt", "Siraj Ansari");
+    const BODY = [];
     req.on("data", (chunk) => {
       console.log(chunk);
+      BODY.push(chunk);
+    });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(BODY).toString();
+      console.log(parsedBody);
     });
     res.statusCode = 302;
     res.setHeader("Location", "/");
