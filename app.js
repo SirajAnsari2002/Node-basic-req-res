@@ -42,6 +42,8 @@ const SERVER = HTTP.createServer((req, res) => {
       const params = new URLSearchParams(parsedBody);
       bodyObject = Object.fromEntries(params);
       console.log(bodyObject);
+      bodyString = JSON.stringify(bodyObject);
+      FS.writeFileSync("siraj.txt", bodyString);
     });
     res.statusCode = 302;
     res.setHeader("Location", "/");
